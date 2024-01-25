@@ -286,7 +286,6 @@ class Gauss_calc(Calc):
         proc : subprocess.Popen object
             the object should have a .wait() method
        """
-
         gauss_path = os.path.join(self.here, self.calc_name)
         os.chdir(gauss_path)
 
@@ -303,7 +302,6 @@ class Gauss_calc(Calc):
         os.chdir(self.here)
 
         return proc
-
 
     def read_out(self, 
                  positions, 
@@ -748,8 +746,6 @@ class Turbo_calc(Calc):
     Calculation with ADC2 or CC2 with Turbomole 7.0 and 7.6
 
     """
-
-#    def run(self, atoms, nprocs=None):
     def run(self, atoms, point_flex = None, nprocs = None, state=None, states=None, singlestate=0, nac_coupling=[], soc_coupling=[]):
         """
         Write a Turbomole coord file and return a subprocess.Popen
@@ -2068,5 +2064,4 @@ class Orca_calc(Calc):
         gradients = gradients[:len(positions)]
 
         os.chdir(self.here)
-
         return (energy, gradients, scf_energy)

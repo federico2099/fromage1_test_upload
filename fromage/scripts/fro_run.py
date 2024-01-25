@@ -27,7 +27,6 @@ from fromage.utils.newtonx import fro_nx as nx
 from fromage.io.parse_config_file import bool_cast
 from fromage.dynamics.periodic_table import Element
 
-
 def sequence(in_pos):
     """
     Run Electronic Structure calculations in parallel and write and return results
@@ -35,7 +34,8 @@ def sequence(in_pos):
     This is why it can only receive one array of floats as input and return two
     arrays of floats. As a result some variables in this function are defined
     elsewhere in the module which is a necessary evil.
-    Parameters
+
+Parameters
     ----------
     in_pos : list of floats
         Input coordinates in array form
@@ -45,6 +45,7 @@ def sequence(in_pos):
         Combined energy or penalty function value in Hartree
     gr_out : list of floats
         Gradients of en_out in Hartree/Angstrom
+
     References
     ----------
     Levine, B. G., Coe, J. D. & Martinez, T. J. Optimizing conical intersections
@@ -130,8 +131,8 @@ def sequence(in_pos):
     else:
         en_out = en_combo
         gr_out = gr_combo
- 
-    # print some updates in the output
+
+# print some updates in the output
     out_file.write("------------------------------\n")
     global iteration
     iteration += 1
@@ -251,7 +252,6 @@ if __name__ == '__main__':
         new_inputs = rf.read_config("fromage.in")
         inputs.update(new_inputs)
 
-########### FJH #################################
     out_file = inputs["out_file"]
 #
     # output
@@ -322,7 +322,6 @@ if __name__ == '__main__':
     # read initial coordniates
     mol_atoms = rf.read_xyz(mol_file)[0]
 
-    
     # read shell atoms
     shell_atoms = rf.read_xyz(shell_file)[0]
 
@@ -347,8 +346,8 @@ if __name__ == '__main__':
         res = minimize(sequence, atoms_array, jac=True,
                        options={'disp': True, 'gtol': gtol})
 
-#    out_file.write("DONE\n")
-#    end_time = datetime.now()
-#    out_file.write("ELAPSED TIME: " + str(end_time - start_time) + "\n")
-#    out_file.write("ENDING TIME: " + str(end_time) + "\n")
-#    out_file.close()
+    out_file.write("DONE\n")
+    end_time = datetime.now()
+    out_file.write("ELAPSED TIME: " + str(end_time - start_time) + "\n")
+    out_file.write("ENDING TIME: " + str(end_time) + "\n")
+    out_file.close()

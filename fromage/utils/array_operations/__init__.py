@@ -187,7 +187,7 @@ def orthogonalise_asym(vectors):
     o_vecs = np.array([ovec_1,ovec_2])
     return o_vecs
 
-def array2atom(template, pos, q = None): # FJH added q = None
+def array2atom(template, pos, q = None):
     """
     Turn an array of the form x1, y1, z1, x2, y2, z2 etc. into a list of Atom
     objects
@@ -209,11 +209,11 @@ def array2atom(template, pos, q = None): # FJH added q = None
     """
     sliced_pos = [pos[i:i + 3] for i in range(0, len(pos), 3)]
     out_atoms = []
-    count = 0 # FJH
+    count = 0 
     for atom in zip(template, sliced_pos):
-        if q is not None: # FJH
+        if q is not None: 
             new_atom = Atom(atom[0].elem, atom[1][0], atom[1][1], atom[1][2], q[count]) # FJH
-        else: # FJH
+        else: 
             new_atom = Atom(atom[0].elem, atom[1][0], atom[1][1], atom[1][2], 0)
         out_atoms.append(new_atom)
         count += 1

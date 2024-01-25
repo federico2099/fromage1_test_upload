@@ -24,7 +24,7 @@ Rivera, M., Dommett, M., Crespo-Otero, R. ONIOM(QM:QM') Electrostatic Embedding 
    - Nonadiabatic molecular dynamics with Surface Hopping (GSH, FSSH):
      Generalized FSSH and ZNSH with nonadibatic coupling and spin-orbit coupling
    - Constrained DFT (charge and/or spin) optimizations 
-   - Conical intersections and S/T crossing search in the crystal, gas phase and solution (implicit solvent)
+   - Conical intersections and S/T crossings search in the crystal, gas phase and solution (implicit solvent)
    - Supports: Gaussian, Turbomole, Q-Chem, NWChem, Orca, Molcas, xTB, DFTB+ and MOPAC (including FOMO-CI)
     
 ## 1 Installation
@@ -285,7 +285,6 @@ Once you have finished running `fro_prep_run.py`, you will end up with a few fil
 
 To run fromage, all you need is:
 
-
 - A `fromage.in` file
 - `mol.init.xyz`
 - `shell.xyz`
@@ -299,7 +298,6 @@ For Turbomole RI-CC2, run a define and then write in all of the point charges fr
 **IMPORTANT**: Turbomole uses Bohr units in its control file and as such the x, y and z columns should be scaled accordingly
 
 For Molcas RASCF, prepare an input file in the directory called `molcas.input` with geom.xyz as the coordinate. To add point charges, use in `&GATEWAY`:
-
 
 ```
   xfield
@@ -318,6 +316,15 @@ You should be all set now. Run `fro_run.py` to begin the calculation.
 
    - You only need `fromage.in`, `mol.init.xyz` `mh` and `mg` directories containing `.temp` files. 
    - Run `ci_search.py` to begin the calculation 
+### 3.2 Outputs
+
+The program only has three main outputs:
+
+- `fromage.out` which gives updates on all of the individual energies being calculated, the total gradient norm and the energy gap
+- `geom_mol.xyz` which keeps a record of the optimising geometry
+- `geom_cluster.xyz` which combines `geom_mol.xyz` and `shell.xyz` for a better view of intermolecular interactions
+
+If the minimisation ran smoothly, the last line of `fromage.out` should be the ending time.
 
 ## 4 Additional utilities
 
@@ -359,7 +366,8 @@ This utility does operations on xyz files paired up with unit cell vector files.
 ```
 Options include extracting the nonequivalent monomers from the cell, generating a tessalating cell but with all complete molecules (therefore spilling out of the bounding box of the unit cell vectors), confining a cell to the bounding box and creating supercells.
 
-### 4.4 Analyse dimers in aggregate geoemtries
+<<<<<<< HEAD
+### 4.4 Analyse dimers in aggregate geometries
 
 The script `fro_dimer_tools.py` can identify the unique dimers in the supplied geometry, taking into account periodicity if relevant. The dimers can further be characterised by the angles between their principal, secondary and normal axes, as well as their centroid-to-centroid distance. As before, many parameters can be altered so using `fro_dimer_tools.py -h` is encouraged.
 
@@ -384,7 +392,6 @@ Will use the diabatisation method (-m DIA) and use the transition dipole moment 
 
 ### 4.7 And more!!!
 
-
 ## 5 Some parting words
 
 If you find yourself with a bunch of error files during your optimisation, ask yourself where some calculations might have failed in the geometry optimisation. Maybe some SCF did not converge or your central molecule escaped the cluster to be with its one true love: infinitely attractive point charges. To combat this, try adding more molecules to your cluster.
@@ -397,9 +404,11 @@ If all you want to do is integrate your favourite quantum chemistry package into
 
 The Ewald program is often the source of all of your problems when tinkering with the embedding methods, even as a regular user pushing the program to its limits. It uses a deprecated lapack function and needs to be modified very specifically to be used with `fro_prep_run.py`.
 
---------------------------------------------------------------------------------
+
+## 6 Contributors 
+The core algorithms in fromage were developed by Miguel Rivera when he was a PhD student in the Crespo-Otero group. Michael Dommett (exciton analysis) and Amir Sidat (geometry analysis) have contributed to initial versions of fromage. Currently, Federico Hernandez, Amir Sidat, and Michael Ingham are actively contributing to the code. Some new features not yet included in this version include nonadiabatic dynamic simulations, optimisation of different regions, treatment of fully connected molecular crystals (such as MOFs and COFs), and different methods to address overpolarisation. If you are interested in these new features or would like to contribute to fromage, please contact Rachel Crespo-Otero at r.crespo-otero@ucl.ac.uk.   
 
 More detailed instructions can be found in the [documentation](https://fromage.readthedocs.io/).
-For any questions about usage, citing or contributing, please email our group at f.hernandez@qmul.ac.uk or r.crespo-otero@qmul.ac.uk
+For any questions about usage, citing or contributing, please email our group at federico.hernandez@ucl.ac.uk or r.crespo-otero@ucl.ac.uk
 
-- Miguel Rivera and Federico Hernandez
+-The Crespo-Otero group 

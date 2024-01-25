@@ -557,7 +557,6 @@ def write_dynamics(file_name, temp_name, state : int, nstates : int):
     out_file.close()
     return
 
-
 def write_g_temp(file_name, fixed_atoms, points, temp_name, proj_name='gaussian'):
     """
     Write a Gaussian input template file.
@@ -608,7 +607,6 @@ def write_g_temp(file_name, fixed_atoms, points, temp_name, proj_name='gaussian'
     out_file.close()
     return
 
-
 def write_xtb_temp(file_name, fixed_atoms, points, temp_name, proj_name='xtb'):
     """
     """
@@ -637,7 +635,6 @@ def write_xtb_temp(file_name, fixed_atoms, points, temp_name, proj_name='xtb'):
     charge_file.close()
 
     return
-
 
 def edit_vasp_pos(in_name, atoms):
     """
@@ -935,7 +932,7 @@ def write_tinker_temp(file_name_1,file_name_2,reg1_atoms,reg2_atoms,point_charge
                 out_file_rl.write(line)
         out_file_rl.close()
     else:    
-        # Delete the output files if they already exists
+        # Delete the output files if they already exist
         # to avoid overwriting 
         if os.path.exists(file_name_1):
             subprocess.call("rm " + file_name_1, shell=True)

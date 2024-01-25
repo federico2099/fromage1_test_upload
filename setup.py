@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from setuptools import setup, Extension
-#import numpy as np
 
 fdist_module = Extension('fromage.fdist._fdist', sources=['fromage/fdist/fdist.i','fromage/fdist/fdist.cpp'],swig_opts=['-c++'])
 
@@ -9,7 +8,8 @@ setup(name='fromage',
       version='2.0',
       description='FRamewOrk for Molecular AGgregate Excitations',
       authors='Federico J Hernandez, Amir Sidat, Miguel Rivera, Michael Dommett, Rachel Crespo-Otero',
-      author_email='f.hernandez@qmul.ac.uk - r.crespo-otero@qmul.ac.uk',
+      author_email='federico.hernandez@ucl.ac.uk - r.crespo-otero@ucl.ac.uk',
+
       license='MIT',
       ext_modules=[fdist_module],
       packages=['fromage',
